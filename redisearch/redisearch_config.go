@@ -17,7 +17,7 @@ type ConnectionPool struct {
 // Search searches the index for the given query, and returns documents,
 // the total number of results, or an error if something went wrong
 func (i *ConnectionPool) ConfigPoolSearch(q *Query) (docs []Document, total int, err error) {
-	conn := i.RedigoClient
+	conn := i.RedigoPool.Get()
 	defer conn.Close()
 
 	args := redigo.Args{i.IndexName}
