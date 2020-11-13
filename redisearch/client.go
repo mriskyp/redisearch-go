@@ -16,7 +16,7 @@ type Client struct {
 	name string
 }
 
-var maxConns = 500
+var maxConns = 200
 
 // NewClient creates a new client connecting to the redis host, and using the given name as key prefix.
 // Addr can be a single host:port pair, or a comma separated list of host:port,host:port...
@@ -44,8 +44,6 @@ func NewClientFromPool(pool *redis.Pool, name string) *Client {
 		pool: pool,
 		name: name,
 	}
-	a := ConnectionPool{}
-	a.ConfigPoolSearch()
 	return ret
 }
 
